@@ -4,9 +4,13 @@ require 'spec_helper'
 describe Postkode do
   describe '.validate' do
     it 'validates valid postcodes' do
-      expect(Postkode.validate('WC2E 7PX')).to be true
-      expect(Postkode.validate('SW1Y 4BN')).to be true     # Centralish London
-      expect(Postkode.validate('NE9 6AA')).to be true      # Angel of the North
+      expect(Postkode.validate('WC2E 7PX')).to be true     # AANA
+      expect(Postkode.validate('SW1Y 4BN')).to be true     # AANA # Centralish London
+      expect(Postkode.validate('NE9 6AA')).to be true      # AAN  # Angel of the North
+      expect(Postkode.validate('N1C 4AX')).to be true      # ANA
+      expect(Postkode.validate('BS40 5BL')).to be true     # AANN
+      expect(Postkode.validate('E17 0DX')).to be true      # ANN
+      expect(Postkode.validate('W4 1AP')).to be true       # AN
     end
 
     it 'rejects an invalid postcode' do
@@ -19,7 +23,7 @@ describe Postkode do
 
     it 'rejects a blank postcode' do
       expect(Postkode.validate('')).to be false
-    end    
+    end
   end
 
   describe '.get_first_section' do
