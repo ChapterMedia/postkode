@@ -3,8 +3,10 @@ require 'spec_helper'
 
 describe Postkode do
   describe '.validate' do
-    it 'validates a valid postcode' do
+    it 'validates valid postcodes' do
       expect(Postkode.validate('WC2E 7PX')).to be true
+      expect(Postkode.validate('SW1Y 4BN')).to be true     # Centralish London
+      expect(Postkode.validate('NE9 6AA')).to be true      # Angel of the North
     end
 
     it 'rejects an invalid postcode' do
