@@ -36,6 +36,18 @@ describe Postkode do
       expect(Postkode.get_first_section('WC2E 7PX')).to eq('WC2E')
     end
   end
+  
+  describe '.validate_and_normalize' do
+    it 'splits spaceless postcodes' do
+      expect(Postkode.validate_and_normalize('WC2E7PX')).to eq('WC2E 7PX')
+    end
+    it 'uppercases lower or mixed case postcodes' do
+       expect(Postkode.validate_and_normalize('wC2e7Px')).to eq('WC2E 7PX')
+    end
+    it 'returns nil if the postcode is invalid' do
+      expect(Postkode.validate_and_normalize('@partyHaus!')).to eq('WC2E 7PX')
+    end
+  end
 
   describe '.get_outcode' do
     it 'gets the outcode of a valid postcode' do
