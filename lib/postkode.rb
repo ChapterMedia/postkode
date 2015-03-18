@@ -79,4 +79,12 @@ class Postkode
     res = string.scan(NORMAL_PART_POSTCODE_PATTERN)
     res.length > 0 ? res : nil
   end
+  
+  def self.validate_and_normalize(string)
+    return nil unless validate(string)
+    validate(string, true).
+      map(&:to_s).
+      map(&:upcase).
+      join(" ")
+  end
 end
