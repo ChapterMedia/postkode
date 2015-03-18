@@ -45,7 +45,7 @@ describe Postkode do
        expect(Postkode.validate_and_normalize('wC2e7Px')).to eq('WC2E 7PX')
     end
     it 'returns nil if the postcode is invalid' do
-      expect(Postkode.validate_and_normalize('@partyHaus!')).to eq('WC2E 7PX')
+      expect(Postkode.validate_and_normalize('@partyHaus!')).to eq(nil)
     end
   end
 
