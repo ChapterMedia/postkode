@@ -17,3 +17,10 @@ Postkode.validate('WC2E 7PX')
 
 Postkode.validate('NOT A POSTCODE')
 => false
+
+Postkode.random
+=> "M5 6RL"
+
+### ACKNOWLEDGEMENTS
+
+Postkode.random uses strrand random string generator by tama <repeatedly@gmail.com>

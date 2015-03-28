@@ -1,4 +1,5 @@
 # encoding: utf-8
+require_relative 'strrand'
 
 # Handles validation of UK-style postcodes
 class Postkode
@@ -79,12 +80,17 @@ class Postkode
     res = string.scan(NORMAL_PART_POSTCODE_PATTERN)
     res.length > 0 ? res : nil
   end
-  
+
   def self.validate_and_normalize(string)
     return nil unless validate(string)
     validate(string, true).
       map(&:to_s).
       map(&:upcase).
       join(" ")
+  end
+
+  def self.random()
+    generator_pattern = "#{[AANN, AANA, ANA, ANN, AAN, AN].sample} #{PART_TWO}"
+    StringRandom.random_regex(generator_pattern)
   end
 end

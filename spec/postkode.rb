@@ -36,7 +36,7 @@ describe Postkode do
       expect(Postkode.get_first_section('WC2E 7PX')).to eq('WC2E')
     end
   end
-  
+
   describe '.validate_and_normalize' do
     it 'splits spaceless postcodes' do
       expect(Postkode.validate_and_normalize('WC2E7PX')).to eq('WC2E 7PX')
@@ -75,4 +75,12 @@ describe Postkode do
     end
   end
 
+  describe '.random' do
+    it 'generates 100 random postcodes that validate' do
+      (0...100).each do
+        random_postcode = Postkode.random
+        expect(Postkode.validate(random_postcode)).to be true
+      end
+    end
+  end
 end
