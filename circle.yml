@@ -1,0 +1,20 @@
+# Catch test coverage artifacts.
+general:
+  artifacts:
+    - "coverage"
+    - "tmp/fail_saves"
+    - "tmp/examples_results.txt"
+    - "tmp/rubycritic"
+
+# Get JUnit style stuff for CI
+test:
+  override:
+    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format progress --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
+    - bundle exec rubycritic lib
+
+# Create cache directories for tests
+checkout:
+  post:
+    - mkdir -p tmp
+    - mkdir -p tmp/fail_saves
+    - mkdir -p tmp/feedbacks

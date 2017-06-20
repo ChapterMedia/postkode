@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'spec_helper'
 
 describe Postkode do
@@ -66,11 +65,21 @@ describe Postkode do
       haystack = 'The postcode is in here WC2E 7PX - somewhere'
       expect(Postkode.find_in_string(haystack)).to eq([['WC2E', '7PX']])
     end
+
+    it 'gets a lower-case postcode from somewhere in a string' do
+      haystack = 'The postcode is in here wc2e 7px - somewhere'
+      expect(Postkode.find_in_string(haystack)).to eq([['WC2E', '7PX']])
+    end
   end
 
   describe '.find_partial_in_string' do
     it 'gets a partial postcode from somewhere in a string' do
       haystack = 'The postcode is in here WC2E - somewhere'
+      expect(Postkode.find_partial_in_string(haystack)).to eq([['WC2E']])
+    end
+
+    it 'gets a lower-case partial postcode from somewhere in a string' do
+      haystack = 'The postcode is in here wc2e - somewhere'
       expect(Postkode.find_partial_in_string(haystack)).to eq([['WC2E']])
     end
   end

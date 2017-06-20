@@ -1,4 +1,3 @@
-# encoding: utf-8
 require_relative 'strrand'
 
 # Handles validation of UK-style postcodes
@@ -72,12 +71,12 @@ class Postkode
   end
 
   def self.find_in_string(string)
-    res = string.scan(NORMAL_POSTCODE_PATTERN)
+    res = string.upcase.scan(NORMAL_POSTCODE_PATTERN)
     res.length > 0 ? res : nil
   end
 
   def self.find_partial_in_string(string)
-    res = string.scan(NORMAL_PART_POSTCODE_PATTERN)
+    res = string.upcase.scan(NORMAL_PART_POSTCODE_PATTERN)
     res.length > 0 ? res : nil
   end
 
