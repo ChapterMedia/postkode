@@ -46,8 +46,8 @@ class StringRandom
   #
   # Singleton method version of random_regex.
   #
-  def self.random_regex(patterns)
-    StringRandom.new.random_regex(patterns)
+  def self.random_regex(pattern)
+    StringRandom.new.random_regex(pattern)
   end
 
 
@@ -61,6 +61,11 @@ class StringRandom
       '['  => method(:regch_bracket),
     }
   end
+
+  def random_regex(pattern)
+    _random_regex(pattern)
+  end
+
 
   private
 
