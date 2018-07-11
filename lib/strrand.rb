@@ -58,14 +58,7 @@ class StringRandom
     @max   = max
     @map   = OldPattern.clone
     @regch = {
-      "\\" => method(:regch_slash),
-      '.'  => method(:regch_dot),
       '['  => method(:regch_bracket),
-      '*'  => method(:regch_asterisk),
-      '+'  => method(:regch_plus),
-      '?'  => method(:regch_question),
-      '|'  => method(:regch_pipe),
-      '{'  => method(:regch_brace)
     }
   end
 
